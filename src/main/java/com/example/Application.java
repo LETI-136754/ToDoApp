@@ -13,4 +13,6 @@ public class Application implements AppShellConfigurator {
         SpringApplication.run(Application.class, args);
     }
 
+    public static class TaskPdf {
+    }
 }
