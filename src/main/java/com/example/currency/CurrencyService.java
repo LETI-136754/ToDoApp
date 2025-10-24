@@ -2,7 +2,7 @@ package com.example.currency;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import jakarta.annotation.PostConstruct;
 import java.util.Optional;
 
 @Service
@@ -12,6 +12,21 @@ public class CurrencyService {
 
     CurrencyService(CurrencyRateRepository rateRepository) {
         this.rateRepository = rateRepository;
+    }
+
+    @PostConstruct
+    public void initDefaultRates() {
+        addIfMissing("EUR", "USD", 1.10);
+        addIfMissing("USD", "EUR", 0.91);
+        addIfMissing("EUR", "GBP", 0.85);
+        addIfMissing("GBP", "EUR", 1.18);
+        addIfMissing("USD", "GBP", 0.77);
+        addIfMissing("GBP", "USD", 1.30);
+    }
+
+    private void addIfMissing(String from, String to, double rate) {
+        rateRepository.findByFromCurrencyAndToCurrency(from, to)
+                .orElseGet(() -> rateRepository.save(new CurrencyRate(from, to, rate)));
     }
 
     @Transactional(readOnly = true)
