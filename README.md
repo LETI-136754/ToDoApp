@@ -1,5 +1,12 @@
 # App README
 
+Vídeo Youtube da app em funcionamento https://youtu.be/uJaMlem4quI
+
+LEI 99371 Pedro Angelino
+LETI 136754 Marina Granatiero
+
+
+
 ## Project Structure
 
 The sources of your App have the following structure:

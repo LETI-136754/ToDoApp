@@ -34,11 +34,11 @@ public class PdfService {
             document.save(file);
         }
 
-        // Salva log nel database
+
         PdfPrintLog log = new PdfPrintLog(fileName, LocalDateTime.now());
         logRepository.save(log);
 
-        // Qui puoi aggiungere la logica per inviare il file alla stampante se necessario
+
 
         return file;
     }
